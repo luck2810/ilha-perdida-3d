@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Ilha Perdida 3D</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b3d5c"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="apple-touch-icon" href="assets/icons/icon-192.png"><link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"}}</script></head>
+<body><canvas id="c"></canvas>
+<div id="hud"><div id="bars"><div class="b"><i id="bv" style="background:#e74c3c"></i><em id="nv">❤ 100</em></div><div class="b"><i id="bf" style="background:#e67e22"></i><em id="nf">🍖 100</em></div><div class="b"><i id="be" style="background:#c99a06"></i><em id="ne">⚡ 100</em></div></div>
+<div id="clock">06:00</div><div id="inv"></div><div id="mission">Missão 1: Acordar na ilha. Explore e colete recursos.</div><div id="prompt"></div></div>
+<div id="touch"><div id="joy"><i id="knob"></i></div><button id="bJump">⤒</button><button id="bAct">E</button><button id="bInv">🎒</button><button id="bCam">👁</button></div>
+<div id="panel" hidden><div class="card"><h3>🎒 Mochila <small id="cap"></small></h3><div id="grid"></div><p class="hint">Toque numa 🍎 (ou F) para comer. Toque em 🔥🛠️⛺📦 para construir.</p><h3>🔨 Fabricação</h3><div id="rec"></div><button id="close">Fechar (I)</button></div></div><div id="toast"></div>
+<div id="brk"><i></i></div><div id="vig"></div><div id="cross">+</div>
+<div id="lockhint">Clique na tela para capturar o mouse · ESC libera o cursor</div>
+<div id="hotbar"></div>
+<div id="fade"></div>
+<div id="boss" hidden><span>🗿 Golem das Cavernas</span><div class="b" style="width:220px;margin:4px auto"><i id="bossv" style="background:#c0392b"></i></div></div>
+<button id="bPause">⏸</button>
+<div id="pause" hidden><div class="card"><h2>⏸ Pausado</h2><button id="pResume" class="big">Continuar</button><button id="pSave" class="big">Salvar agora</button>
+<h3>⚙️ Configurações</h3><p class="hint">Qualidade gráfica</p><div class="seg" id="qSeg"><button data-q="baixa">Baixa</button><button data-q="media">Média</button><button data-q="alta">Alta</button></div>
+<p class="hint">Sensibilidade da câmera</p><input type="range" id="sens" min="0.4" max="2" step="0.1" value="1" style="width:100%"><p class="hint">Volume</p><input type="range" id="vol" min="0" max="1" step="0.1" value="0.6" style="width:100%"><button id="pView" class="big">Câmera</button>
+<button id="pNew" class="big" style="background:#c0392b;color:#fff">Reiniciar jogo (apaga o progresso)</button></div></div>
+<div id="end" hidden><h1>🚁 Resgatado!</h1><p id="endtxt"></p><button id="endCont">Continuar explorando</button><button id="endNew">Novo jogo</button></div>
+<div id="start"><img id="hero" src="assets/island.jpg" alt="Ilha Perdida 3D"><h1>Ilha Perdida 3D</h1><button id="play">Continuar / Novo jogo</button><button id="reset">Apagar progresso</button><p>WASD mover · Shift correr · botão esquerdo: quebrar · mouse: mova para olhar · V câmera 1ª/3ª pessoa · Espaço pular · E coletar · Mouse/arrastar: câmera</p></div>
+<div id="err" style="position:fixed;bottom:0;left:0;right:0;background:#900;color:#fff;font:12px monospace;padding:6px;display:none;z-index:9"></div>
+<script>
+var E=document.getElementById('err');function show(t){E.style.display='block';E.textContent+=t+' | '}
+addEventListener('error',function(e){show(e.message)});addEventListener('unhandledrejection',function(e){show(String(e.reason))});
+document.getElementById('play').onclick=function(){document.getElementById('start').style.display='none'};
+document.getElementById('reset').onclick=function(){localStorage.removeItem('ilha-perdida-save');location.reload()};
+setTimeout(function(){if(!window.__ok)show('O jogo (modulo JS/Three.js) nao carregou. Abra por servidor (http), com internet no primeiro acesso.')},4000);
+</script>
+<script type="module" src="src/main.js"></script></body></html>
